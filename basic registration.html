@@ -1,0 +1,124 @@
+Task: Basic Registration Module (Languages which can be used, HTML, CSS, Javascript (Node, Express, React), SQL/MongoDB)
+
+Webpage with register and signup button.
+Once clicked on register button a pop up form with fields such as Name, Email ID, Phone Number, should appear (all fields should be mandatory),
+Verification mail with activation link to be sent to Email ID.
+Once registered; user should be able to login.
+If user is not registered, a notification mentioning ‘user is not registered’ should appear, and if user is registered, the page should take the user to next screen.
+Next screen should say. - Welcome “UserName”.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+ body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        #registerForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        #welcomeScreen {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Registration</h1>
+
+    <button onclick="showRegisterForm()">Register</button>
+    <button onclick="showLoginForm()">Login</button>
+
+    <div id="registerForm" style="display: none;">
+        <form onsubmit="return registerUser()">
+            <p>
+                <label for="name">Name:</label> <input type="text"id="name" required>
+            </p>
+            <p>
+                <label for="email">Email:</label> <input type="email" id="email" required>
+            </p>
+            <p>
+                <label for="phone">Phone Number:</label> <input type="tel" id="phone" required>
+            </p>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <div id="loginForm" style="display: none;">
+        <form onsubmit="return loginUser()">
+            <p>
+                <label for="loginEmail">Email:</label> <input type="email" placeholder="Enter your email" id="loginEmail" required>
+            </p>
+            <p>
+                <input type="submit" value="Login">
+            </p>
+        </form>
+    </div>
+
+    <div id="welcomeMessage" style="display: none;">
+        <h2>Welcome <span id="userName"></span>!</h2>
+    </div>
+
+    <div id="errorNotification" class="error" style="display: none;"></div>
+
+    <script>
+        function showRegisterForm() {
+            document.getElementById('registerForm').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('welcomeMessage').style.display = 'none';
+            document.getElementById('errorNotification').style.display = 'none';
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('welcomeMessage').style.display = 'none';
+            document.getElementById('errorNotification').style.display = 'none';
+        }
+
+        function registerUser() {
+            // Simulate registration and verification email sending (in a real scenario, this should be handled on the server side)
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+
+            // Here you should send a request to the server to handle registration and email sending
+
+            // For now, just show a success message
+            alert('Registration successful! Verification mail sent to ' + email);
+
+            return false; // Prevent form submission (to avoid page refresh)
+        }
+
+        function loginUser() {
+            // Simulate login logic (in a real scenario, this should be handled on the server side)
+            var loginEmail = document.getElementById('loginEmail').value;
+
+            // Here you should send a request to the server to handle login
+
+            // For now, show a success message and welcome the user
+            document.getElementById('userName').innerText = loginEmail;
+            document.getElementById('welcomeMessage').style.display = 'block';
+
+            return false; // Prevent form submission (to avoid page refresh)
+        }
+    </script>
+</body>
+</html>
